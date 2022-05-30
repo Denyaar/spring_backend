@@ -1,6 +1,5 @@
 package com.denyaar.product.controller;
 
-
 import com.denyaar.product.Services.ServiceImplimentation.ProductService;
 import com.denyaar.product.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,17 +11,18 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
+@RequestMapping("/products")
 public class ProductController {
     @Autowired
     private ProductService productService;
 
 
-    @GetMapping("/productList")
+    @GetMapping("/list")
     public List<Product> list() {
         return productService.allProducts();
     }
 
-    @GetMapping("/getProduct/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<Product> get(@PathVariable Long id) {
         try {
             Product product = productService.getProductById(id);
@@ -31,9 +31,9 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @PostMapping("/productSave")
+    @PostMapping("/save")
     public void add(@RequestBody Product product) {
-        productService.saveProduct(product);
+            productService.saveProduct(product);
     }
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@RequestBody Product product, @PathVariable Long id) {
@@ -51,8 +51,6 @@ public class ProductController {
     public void delete(@PathVariable Integer id) {
         productService.deleteProductById(id);
     }
-
-
 
 }
 

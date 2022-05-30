@@ -2,19 +2,15 @@ package com.denyaar.product.model;
 
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Setter
-@Getter
+@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "products")
-
 
 public class Product {
 
@@ -23,6 +19,7 @@ public class Product {
     private  Long id;
 
     @NotNull(message = "Name can not be bull")
+    @Column(unique=true)
     private String name;
 
     @NotNull(message = "Description can not be bull")
@@ -34,13 +31,6 @@ public class Product {
     @NotNull(message = "price can not be bull")
     private double price;
 
-    public Product(Long id, String name, String description, String image, double price) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.image = image;
-        this.price = price;
-    }
 
     public Long getId() {
         return id;
