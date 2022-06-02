@@ -48,8 +48,14 @@ public class ProductController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable Integer id) {
-        productService.deleteProductById(id);
+    public ResponseEntity<Product> delete(@PathVariable Integer id) {
+        try {
+            productService.deleteProductById(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
     }
 
 }
