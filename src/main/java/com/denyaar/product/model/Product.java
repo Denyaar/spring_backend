@@ -20,7 +20,7 @@ public class Product {
 
     @NotNull(message = "Name can not be bull")
     @Column(unique=true)
-    private String name;
+    public static String name;
 
     @NotNull(message = "Description can not be bull")
     private String description;
