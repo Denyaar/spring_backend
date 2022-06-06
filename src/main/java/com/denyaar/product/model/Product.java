@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Table(name = "products")
 
-public class Product {
+public class  Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,7 +20,7 @@ public class Product {
 
     @NotNull(message = "Name can not be bull")
     @Column(unique=true)
-    public static String name;
+    private String name;
 
     @NotNull(message = "Description can not be bull")
     private String description;
@@ -43,6 +43,7 @@ public class Product {
     public String getName() {
         return name;
     }
+
 
     public void setName(String name) {
         this.name = name;
